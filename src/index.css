@@ -14,9 +14,16 @@ code {
     monospace;
 }
 
+.app_title {
+  color:rgb(22, 197, 22);
+  text-align: center;
+  text-shadow: 2px 2px 5px rgb(201, 68, 174);
+}
 .title {
   color: rgb(201, 68, 174);
   font-size: 1.4rem;
+  margin: 0.5rem 1rem;
+  text-shadow: 2px 2px 5px rgb(15, 152, 15); 
 }
 
 .top_button button {

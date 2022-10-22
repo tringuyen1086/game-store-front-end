@@ -83,6 +83,9 @@ function Games() {
       case "delete":
         setGames(games.filter((e) => e.id !== game.id));
         break;
+
+        default: 
+        console.log("Invalid Action");
     }
 
     setError("");
