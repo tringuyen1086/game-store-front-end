@@ -1,5 +1,5 @@
 //Reference: customer-data-service front-end on October 14, 2022
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GameCard from "./GameCard.js";
 import GameForm from "./GameForm.js";
 
@@ -8,6 +8,26 @@ function Games() {
   const [showForm, setShowForm] = useState(false);
   const [scopedGame, setScopedGame] = useState({});
   const [error, setError] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:8080/game")
+        .then(response => response.json())
+        .then(result => setGames(result))
+        .catch(console.log)
+}, []);
+
+  function addClick() {
+    setScopedGame({
+      id: 0,
+      title: "",
+      esrbRating: "",
+      description: "",
+      price: 0,
+      studio: "",
+      quantity: 0,
+    });
+    setShowForm(true);
+  }
 
   function fetchByEsrbRating(evt) {
     if (evt.target.value === "") {
@@ -42,18 +62,7 @@ function Games() {
     }
   }
 
-  function addClick() {
-    setScopedGame({
-      id: 0,
-      title: "",
-      esrbRating: "",
-      description: "",
-      price: 0,
-      studio: "",
-      quantity: 0,
-    });
-    setShowForm(true);
-  }
+
 
   function notify({ action, game, error }) {
     if (error) {
@@ -132,7 +141,7 @@ function Games() {
           <option value="A Plague Tale: Requiem">A Plague Tale: Requiem</option>
         </select>     
       
-        <table id="games" class="table table-striped">
+        <table id="games" class="table table-bordered">
           <tr>
             <th>Title</th>
             <th>Esrb Rating</th>

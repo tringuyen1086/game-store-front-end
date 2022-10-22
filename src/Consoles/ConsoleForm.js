@@ -53,7 +53,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
     <>
       <h1>{isAdd ? "Add" : "Edit"} Console</h1>
       <form onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <div className="mb-3" class="add_title">
           <label htmlFor="model">Model</label>
           <input
             type="text"
