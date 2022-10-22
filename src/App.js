@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import Consoles from './Consoles/Consoles.js';
+import Games from './Games/Games.js';
+import Tshirts from './Tshirts/Tshirts.js';
+import Header from './Header';
+import { useState} from 'react';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("Consoles");
+
+  // TODO: its rendering the pages
+  const renderPage = () => {
+    if (currentPage === "Consoles") {
+      return <Consoles />;
+    }
+    if (currentPage === "Games") {
+      return <Games />;
+    }
+    if (currentPage === "Tshirts") {
+ 
+      return <Tshirts />;
+    }
+
+    return Header;
+ 
+  };
+
+  const handlePageChange = (e, page) => {
+    e.preventDefault();
+    setCurrentPage(page);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Header currentPage={currentPage} handlePageChange={handlePageChange} />
+    {renderPage()}
+ 
+  </>
   );
 }
 
 export default App;
+
+
+// function App() {
+//   return (
+//     <main className="container">
+//       <Consoles />
+//       <Games />
+//       <Tshirts />
+//       <Invoices />
+//     </main>
+//   );
+// }
+
+// export default App;

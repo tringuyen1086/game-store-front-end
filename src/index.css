@@ -5,9 +5,38 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.title {
+  color: rgb(201, 68, 174);
+  font-size: 1.4rem;
+}
+
+.top_button button {
+  font-size: 0.85rem;
+  margin: 0.5rem 0.4rem;
+}
+
+.top_button select {
+  margin: 0.5rem 0.4rem;
+}
+
+tr {
+  font-size: 0.85rem;
+}
+td {
+  background-color: rgb(233, 236, 221);
+  font-size: 0.75rem;
+}
+
+.action_button button{
+  font-size: 0.75rem;
+  margin: 0.5rem 0.4rem;
 }
