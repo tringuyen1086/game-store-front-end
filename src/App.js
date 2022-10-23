@@ -39,17 +39,3 @@ function App() {
 }
 
 export default App;
-
-
-// function App() {
-//   return (
-//     <main className="container">
-//       <Consoles />
-//       <Games />
-//       <Tshirts />
-//       <Invoices />
-//     </main>
-//   );
-// }
-
-// export default App;
