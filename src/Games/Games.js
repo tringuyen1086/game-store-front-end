@@ -116,15 +116,8 @@ function Games() {
 
         <select name="esrbRating" className="btn btn-primary" onChange={fetchByEsrbRating}>
           <option value="">Get Games by Esrb Rating</option>
-          <option value="AO (Adults Only 18+)"> AO (Adults Only 18+)</option>
-          <option value="E (Everyone)"> E (Everyone)</option>
-          <option value="E 10+ (Everyone 10+)"> E 10+ (Everyone 10+)</option>
           <option value="M (Mature 17+)"> M (Mature 17+)</option>
           <option value="T (Teen)"> T (Teen)</option>
-          <option value="RP (Rating Pending)">RP (Rating Pending)</option>
-          <option value="RP (RP Likely Mature 17+)">
-            RP (RP Likely Mature 17+)
-          </option>
         </select>
         <select name="studio" className="btn btn-primary" onChange={fetchByStudio}>
           <option value="">Get Games by Studio</option>
