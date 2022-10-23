@@ -1,4 +1,6 @@
-//Reference: customer-data-service front-end on October 14, 2022
+//Reference:
+//02-we-record-store-front-end on October 7, 2022 
+//customer-data-service front-end on October 14, 2022
 import { useState } from 'react';
 
 function GameForm({ game: initialGame, notify }) {
@@ -15,7 +17,7 @@ function GameForm({ game: initialGame, notify }) {
     function handleSubmit(evt) {
         evt.preventDefault();
 
-        const url = `http://localhost:8080/game`;
+        const url = isAdd ? "http://localhost:8080/game" : `http://localhost:8080/game/${game.id}$`;
         const method = isAdd ? "POST" : "PUT";
         const expectedStatus = isAdd ? 201 : 204;
 
@@ -49,7 +51,7 @@ function GameForm({ game: initialGame, notify }) {
 
     return (
         <>
-            <h1>{isAdd ? "Add" : "Edit"} Game</h1>
+            <h1>{game.id > 0 ? "Add" : "Edit"} Game</h1>
             <form onSubmit={handleSubmit}>
             <div className="mb-3">
                     <label htmlFor="esrbRating">Esrb Rating</label>

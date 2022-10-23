@@ -1,4 +1,6 @@
-//Reference: customer-data-service front-end on October 14, 2022
+//Reference:
+//02-we-record-store-front-end on October 7, 2022 
+//customer-data-service front-end on October 14, 2022
 import { useState } from "react";
 
 function ConsoleForm({ console: initialConsole, notify }) {
@@ -14,7 +16,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    const url = `http://localhost:8080/console`;
+    const url = isAdd ? "http://localhost:8080/console" :`http://localhost:8080/console/${console.id}$`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 
@@ -51,7 +53,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
 
   return (
     <>
-      <h1>{isAdd ? "Add" : "Edit"} Console</h1>
+      <h1>{console.id > 0 ? "Add" : "Edit"} Console</h1>
       <form onSubmit={handleSubmit}>
       <div className="mb-3" class="add_title">
           <label htmlFor="model">Model</label>

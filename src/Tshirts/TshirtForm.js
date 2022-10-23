@@ -1,4 +1,6 @@
-//Reference: customer-data-service front-end on October 14, 2022
+//Reference:
+//02-we-record-store-front-end on October 7, 2022 
+//customer-data-service front-end on October 14, 2022
 import { useState } from "react";
 
 function TshirtForm({ tshirt: initialTshirt, notify }) {
@@ -14,7 +16,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    const url = `http://localhost:8080/tshirt`;
+    const url = isAdd ? "http://localhost:8080/tshirt" : `http://localhost:8080/tshirt/${tshirt.id}$`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 
@@ -51,7 +53,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
 
   return (
     <>
-      <h1>{isAdd ? "Add" : "Edit"} Tshirt</h1>
+      <h1>{tshirt.id > 0 ? "Add" : "Edit"} Tshirt</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="size">Size</label>
