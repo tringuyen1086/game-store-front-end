@@ -16,7 +16,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    const url = `http://localhost:8080/tshirt`;
+    const url = isAdd ? "http://localhost:8080/tshirt" : `http://localhost:8080/tshirt/${tshirt.id}`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 

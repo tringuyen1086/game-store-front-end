@@ -122,7 +122,7 @@ function Games() {
           <option value="M (Mature 17+)"> M (Mature 17+)</option>
           <option value="T (Teen)"> T (Teen)</option>
           <option value="RP (Rating Pending)">RP (Rating Pending)</option>
-          <option value="RP (RP Likely Mature 17+">
+          <option value="RP (RP Likely Mature 17+)">
             RP (RP Likely Mature 17+)
           </option>
         </select>

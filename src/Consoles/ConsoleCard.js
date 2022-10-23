@@ -21,6 +21,7 @@ function ConsoleRowCard({ console, notify }) {
             <td class="action_button">
                 <button id="deleteButton" className="btn btn-warning mr-3 btn-sm" type="button" onClick={handleDelete}>Delete</button>
                 <button className="btn btn-secondary btn-sm" type="button" onClick={() => notify({ action: "edit-form", console: console})}>Edit</button>
+                {/* <button className="btn btn-secondary btn-sm" type="button" onClick={handleEdit}>Edit</button> */}
             </td>
         </tr>
      )

@@ -16,7 +16,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    const url = `http://localhost:8080/console`;
+    const url = isAdd ? "http://localhost:8080/console" : `http://localhost:8080/console/${console.id}`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 
@@ -67,7 +67,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="model">Manufacturer</label>
+          <label htmlFor="manufacture">Manufacturer</label>
           <input
             type="text"
             id="manufacturer"
@@ -78,7 +78,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="model">Memory Amount</label>
+          <label htmlFor="memoryAmount">Memory Amount</label>
           <input
             type="text"
             id="memoryAmount"
