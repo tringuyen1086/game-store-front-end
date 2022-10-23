@@ -26,23 +26,6 @@ code {
   text-shadow: 2px 2px 5px rgb(15, 152, 15); 
 }
 
-label {
-  color:rgb(11, 47, 192);
-  margin-left: 0.8rem;
-}
-
-table {
-  text-align: center;
-}
-
-table tr th {
-  color:rgb(11, 47, 192);
-}
-
-table tr {
-  -webkit-text-fill-color: rgb(5, 5, 12);
-}
-
 .top_button button {
   font-size: 0.85rem;
   margin: 0.5rem 0.4rem;

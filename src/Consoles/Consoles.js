@@ -1,7 +1,5 @@
-//Reference:
-//02-we-record-store-front-end on October 7, 2022 
-//customer-data-service front-end on October 14, 2022
-import { useState, useEffect } from "react";
+//Reference: customer-data-service front-end on October 14, 2022
+import { useState } from "react";
 import ConsoleCard from "./ConsoleCard.js";
 import ConsoleForm from "./ConsoleForm.js";
 
@@ -10,26 +8,6 @@ function Consoles() {
   const [showForm, setShowForm] = useState(false);
   const [scopedConsole, setScopedConsole] = useState({});
   const [error, setError] = useState();
-
-  useEffect(() => {
-    fetch("http://localhost:8080/console")
-        .then(response => response.json())
-        .then(result => setConsoles(result))
-        .catch(console.log)
-}, []);
-
-function addClick() {
-  setScopedConsole({
-    id: 0,
-    model: "",
-    manufacturer: "",
-    memoryAmount: "",
-    processor: "",
-    price: 0,
-    quantity: 0,
-  });
-  setShowForm(true);
-}
 
   function fetchByManufacturer(evt) {
     if (evt.target.value === "") {
@@ -42,6 +20,18 @@ function addClick() {
     }
   }
 
+  function addClick() {
+    setScopedConsole({
+      id: 0,
+      model: "",
+      manufacturer: "",
+      memoryAmount: "",
+      processor: "",
+      price: 0,
+      quantity: 0,
+    });
+    setShowForm(true);
+  }
 
   function notify({ action, console, error }) {
     if (error) {
@@ -51,8 +41,8 @@ function addClick() {
     }
 
     switch (action) {
-      case "delete":
-        setConsoles(consoles.filter((e) => e.id !== console.id));
+      case "add":
+        setConsoles([...consoles, console]);
         break;
       case "edit":
         setConsoles(
@@ -68,12 +58,9 @@ function addClick() {
         setScopedConsole(console);
         setShowForm(true);
         return;
-      case "add":
-        setConsoles([...consoles, console]);
+      case "delete":
+        setConsoles(consoles.filter((e) => e.id !== console.id));
         break;
-
-      default: 
-      console.log("Invalid Action");
     }
 
     setError("");
@@ -104,7 +91,7 @@ function addClick() {
           <option value="Sony">Sony</option>
         </select>
 
-        <table id="consoles" class="table table-bordered">
+        <table id="consoles" class="table table-striped">
           <tr>
             <th>Model</th>
             <th>Manufacturer</th>
@@ -115,7 +102,7 @@ function addClick() {
           </tr>
           <tbody>
             {consoles.map((r) => (
-              <ConsoleCard key={r.id} console={r} notify={notify} />
+              <ConsoleCard key={r.consoleId} console={r} notify={notify} />
             ))}
           </tbody>
         </table>

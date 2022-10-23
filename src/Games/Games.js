@@ -1,7 +1,5 @@
-//Reference:
-//02-we-record-store-front-end on October 7, 2022 
-//customer-data-service front-end on October 14, 2022
-import { useState, useEffect } from "react";
+//Reference: customer-data-service front-end on October 14, 2022
+import { useState } from "react";
 import GameCard from "./GameCard.js";
 import GameForm from "./GameForm.js";
 
@@ -10,26 +8,6 @@ function Games() {
   const [showForm, setShowForm] = useState(false);
   const [scopedGame, setScopedGame] = useState({});
   const [error, setError] = useState();
-
-  useEffect(() => {
-    fetch("http://localhost:8080/game")
-        .then(response => response.json())
-        .then(result => setGames(result))
-        .catch(console.log)
-}, []);
-
-  function addClick() {
-    setScopedGame({
-      id: 0,
-      title: "",
-      esrbRating: "",
-      description: "",
-      price: 0,
-      studio: "",
-      quantity: 0,
-    });
-    setShowForm(true);
-  }
 
   function fetchByEsrbRating(evt) {
     if (evt.target.value === "") {
@@ -64,7 +42,18 @@ function Games() {
     }
   }
 
-
+  function addClick() {
+    setScopedGame({
+      id: 0,
+      title: "",
+      esrbRating: "",
+      description: "",
+      price: 0,
+      studio: "",
+      quantity: 0,
+    });
+    setShowForm(true);
+  }
 
   function notify({ action, game, error }) {
     if (error) {
@@ -74,8 +63,8 @@ function Games() {
     }
 
     switch (action) {
-      case "delete":
-        setGames(games.filter((e) => e.id !== game.id));
+      case "add":
+        setGames([...games, game]);
         break;
       case "edit":
         setGames(
@@ -91,12 +80,12 @@ function Games() {
         setScopedGame(game);
         setShowForm(true);
         return;
-    case "add":
-      setGames([...games, game]);
-      break;
+      case "delete":
+        setGames(games.filter((e) => e.id !== game.id));
+        break;
 
-    default: 
-    console.log("Invalid Action");
+        default: 
+        console.log("Invalid Action");
     }
 
     setError("");
@@ -118,15 +107,15 @@ function Games() {
 
         <select name="esrbRating" className="btn btn-primary" onChange={fetchByEsrbRating}>
           <option value="">Get Games by Esrb Rating</option>
-          {/* <option value="AO (Adults Only 18+)"> AO (Adults Only 18+)</option>
+          <option value="AO (Adults Only 18+)"> AO (Adults Only 18+)</option>
           <option value="E (Everyone)"> E (Everyone)</option>
-          <option value="E 10+ (Everyone 10+)"> E 10+ (Everyone 10+)</option> */}
+          <option value="E 10+ (Everyone 10+)"> E 10+ (Everyone 10+)</option>
           <option value="M (Mature 17+)"> M (Mature 17+)</option>
           <option value="T (Teen)"> T (Teen)</option>
-          {/* <option value="RP (Rating Pending)">RP (Rating Pending)</option>
+          <option value="RP (Rating Pending)">RP (Rating Pending)</option>
           <option value="RP (RP Likely Mature 17+">
             RP (RP Likely Mature 17+)
-          </option> */}
+          </option>
         </select>
         <select name="studio" className="btn btn-primary" onChange={fetchByStudio}>
           <option value="">Get Games by Studio</option>
@@ -143,7 +132,7 @@ function Games() {
           <option value="A Plague Tale: Requiem">A Plague Tale: Requiem</option>
         </select>     
       
-        <table id="games" class="table table-bordered">
+        <table id="games" class="table table-striped">
           <tr>
             <th>Title</th>
             <th>Esrb Rating</th>

@@ -1,7 +1,5 @@
-//Reference:
-//02-we-record-store-front-end on October 7, 2022 
-//customer-data-service front-end on October 14, 2022
-import { useState, useEffect } from 'react';
+//Reference: customer-data-service front-end on October 14, 2022
+import { useState } from 'react';
 import TshirtCard from './TshirtCard.js';
 import TshirtForm from './TshirtForm.js';
 
@@ -11,18 +9,6 @@ function Tshirts() {
     const [showForm, setShowForm] = useState(false);
     const [scopedTshirt, setScopedTshirt] = useState({});
     const [error, setError] = useState();
-
-    useEffect(() => {
-        fetch("http://localhost:8080/tshirt")
-            .then(response => response.json())
-            .then(result => setTshirts(result))
-            .catch(console.log)
-    }, []);
-
-    function addClick() {
-        setScopedTshirt({ id: 0, size:"", color:"", description:"", price: 0, quantity:0 });
-        setShowForm(true);
-    }
 
     function fetchBySize(evt) {
         if (evt.target.value === "") {
@@ -46,7 +32,10 @@ function Tshirts() {
         }
     }
 
-
+    function addClick() {
+        setScopedTshirt({ id: 0, size:"", color:"", description:"", price: 0, quantity:0 });
+        setShowForm(true);
+    }
 
     function notify({ action, tshirt, error }) {
 
@@ -57,8 +46,8 @@ function Tshirts() {
         }
 
         switch (action) {
-            case "delete":
-                setTshirts(tshirts.filter(e => e.id !== tshirt.id));
+            case "add":
+                setTshirts([...tshirts, tshirt]);
                 break;
             case "edit":
                 setTshirts(tshirts.map(e => {
@@ -72,12 +61,9 @@ function Tshirts() {
                 setScopedTshirt(tshirt);
                 setShowForm(true);
                 return;
-            case "add":
-                setTshirts([...tshirts, tshirt]);
+            case "delete":
+                setTshirts(tshirts.filter(e => e.id !== tshirt.id));
                 break;
-            
-            default: 
-            console.log("Invalid Action");
         }
         
         setError("");
@@ -108,7 +94,7 @@ function Tshirts() {
                     <option value="blue">blue</option>
                 </select>
             
-                <table id='tshirts' class="table table-bordered">
+                <table id='tshirts' class="table table-striped">
                     <tr>
                         <th>Size</th>
                         <th>Color</th>
