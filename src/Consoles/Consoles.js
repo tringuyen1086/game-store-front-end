@@ -51,8 +51,8 @@ function addClick() {
     }
 
     switch (action) {
-      case "add":
-        setConsoles([...consoles, console]);
+      case "delete":
+        setConsoles(consoles.filter((e) => e.id !== console.id));
         break;
       case "edit":
         setConsoles(
@@ -68,9 +68,12 @@ function addClick() {
         setScopedConsole(console);
         setShowForm(true);
         return;
-      case "delete":
-        setConsoles(consoles.filter((e) => e.id !== console.id));
+      case "add":
+        setConsoles([...consoles, console]);
         break;
+
+      default: 
+      console.log("Invalid Action");
     }
 
     setError("");

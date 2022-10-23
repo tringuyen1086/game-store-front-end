@@ -57,8 +57,8 @@ function Tshirts() {
         }
 
         switch (action) {
-            case "add":
-                setTshirts([...tshirts, tshirt]);
+            case "delete":
+                setTshirts(tshirts.filter(e => e.id !== tshirt.id));
                 break;
             case "edit":
                 setTshirts(tshirts.map(e => {
@@ -72,9 +72,12 @@ function Tshirts() {
                 setScopedTshirt(tshirt);
                 setShowForm(true);
                 return;
-            case "delete":
-                setTshirts(tshirts.filter(e => e.id !== tshirt.id));
+            case "add":
+                setTshirts([...tshirts, tshirt]);
                 break;
+            
+            default: 
+            console.log("Invalid Action");
         }
         
         setError("");
