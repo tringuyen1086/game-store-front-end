@@ -7,7 +7,6 @@ import { useState} from 'react';
 function App() {
   const [currentPage, setCurrentPage] = useState("Consoles");
 
-  // TODO: its rendering the pages
   const renderPage = () => {
     if (currentPage === "Consoles") {
       return <Consoles />;
@@ -39,17 +38,3 @@ function App() {
 }
 
 export default App;
-
-
-// function App() {
-//   return (
-//     <main className="container">
-//       <Consoles />
-//       <Games />
-//       <Tshirts />
-//       <Invoices />
-//     </main>
-//   );
-// }
-
-// export default App;

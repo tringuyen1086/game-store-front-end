@@ -1,5 +1,7 @@
-//Reference: customer-data-service front-end on October 14, 2022
-import { useState } from 'react';
+//Reference: 
+//customer-data-service front-end on October 14, 2022
+//02-we-record-store-front-end on October 7, 2022
+import { useState, useEffect } from 'react';
 import TshirtCard from './TshirtCard.js';
 import TshirtForm from './TshirtForm.js';
 
@@ -9,6 +11,13 @@ function Tshirts() {
     const [showForm, setShowForm] = useState(false);
     const [scopedTshirt, setScopedTshirt] = useState({});
     const [error, setError] = useState();
+
+    useEffect(() => {
+        fetch("http://localhost:8080/tshirt")
+            .then(response => response.json())
+            .then(result => setTshirts(result))
+            .catch(console.log)
+    }, []);
 
     function fetchBySize(evt) {
         if (evt.target.value === "") {

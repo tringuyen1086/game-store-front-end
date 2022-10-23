@@ -1,4 +1,6 @@
-//Reference: customer-data-service front-end on October 14, 2022
+//Reference: 
+//customer-data-service front-end on October 14, 2022
+//02-we-record-store-front-end on October 7, 2022
 import { useState } from 'react';
 
 function GameForm({ game: initialGame, notify }) {

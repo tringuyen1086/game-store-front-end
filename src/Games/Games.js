@@ -1,5 +1,7 @@
-//Reference: customer-data-service front-end on October 14, 2022
-import { useState } from "react";
+//Reference: 
+//customer-data-service front-end on October 14, 2022
+//02-we-record-store-front-end on October 7, 2022
+import { useState, useEffect } from "react";
 import GameCard from "./GameCard.js";
 import GameForm from "./GameForm.js";
 
@@ -8,6 +10,13 @@ function Games() {
   const [showForm, setShowForm] = useState(false);
   const [scopedGame, setScopedGame] = useState({});
   const [error, setError] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:8080/game")
+        .then(response => response.json())
+        .then(result => setGames(result))
+        .catch(console.log)
+}, []);
 
   function fetchByEsrbRating(evt) {
     if (evt.target.value === "") {

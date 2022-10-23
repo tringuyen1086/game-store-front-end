@@ -1,5 +1,7 @@
-//Reference: customer-data-service front-end on October 14, 2022
-import { useState } from "react";
+//Reference: 
+//customer-data-service front-end on October 14, 2022
+//02-we-record-store-front-end on October 7, 2022
+import { useState, useEffect } from "react";
 import ConsoleCard from "./ConsoleCard.js";
 import ConsoleForm from "./ConsoleForm.js";
 
@@ -8,6 +10,13 @@ function Consoles() {
   const [showForm, setShowForm] = useState(false);
   const [scopedConsole, setScopedConsole] = useState({});
   const [error, setError] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:8080/console")
+        .then(response => response.json())
+        .then(result => setConsoles(result))
+        .catch(console.log)
+}, []);
 
   function fetchByManufacturer(evt) {
     if (evt.target.value === "") {
